@@ -12,7 +12,21 @@
 
 struct implBipartGraph_t
 {
-	/* TODO: Implement me! */
+
+	/*Vertex number of partite 1*/
+	int vertNum1;
+
+	/*Vertex number of partite 2*/
+	int vertNum2;
+
+	/* Dynamically allocated array of linked lists of neighbours for partite 1. */
+	linkedList_t **vpVertsP1;
+	/* Dynamically allocated array of linked lists of neighbours for partite 2. */
+	linkedList_t **vpVertsP2;
+
+	linkedList_t *vVertExistsP1;
+	linkedList_t *vVertExistsP2;
+
 };
 
 
