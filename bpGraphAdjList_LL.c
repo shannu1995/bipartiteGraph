@@ -12,18 +12,16 @@
 
 struct implBipartGraph_t
 {
-
-	/*Vertex number of partite 1*/
+	/*Number of vertices in partite 1*/
 	int vertNum1;
 
-	/*Vertex number of partite 2*/
+	/*Number of vertices in partite 2*/
 	int vertNum2;
 
-	/* Dynamically allocated array of linked lists of neighbours for partite 1. */
-	linkedList_t **vpVertsP1;
-	/* Dynamically allocated array of linked lists of neighbours for partite 2. */
-	linkedList_t **vpVertsP2;
-
+	linkedList_t *vpVertsP1;
+	linkedList_t *vpVertsP2;
+	
+	/*Maybe we should use another linked-list other than the one used for*/
 	linkedList_t *vVertExistsP1;
 	linkedList_t *vVertExistsP2;
 
@@ -41,7 +39,7 @@ bpGraph_t* bipartGraphCreate(int part1VertNum, int part2VertNum)
 
 	/* TODO: Replace placeholder. */
 	return NULL;
-} /* end of bipartGraphDestroy() */
+} /* end of bipartGraphCreate() */
 
 
 void bipartGraphDestroy(bpGraph_t* pGraph)

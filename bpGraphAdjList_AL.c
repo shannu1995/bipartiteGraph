@@ -21,9 +21,9 @@
  */
 struct implBipartGraph_t
 {
-	/** Vertex number of partite 1. */
+	/** Number of vertices in partite 1. */
 	int vertNum1;
-	/** Vertex number of partite 2. */
+	/** Number of vertuces in partite 2. */
 	int vertNum2;
 
 	/* Dynamically allocated array of linked lists of neighbours for partite 1. */
@@ -52,21 +52,39 @@ bpGraph_t* bipartGraphCreate(int vertNumPart1, int vertNumPart2)
 {
 	int i;
 
+	/*Setting a memory chunk of size of bpGraph_t aside*/
+	/*bpGraph is the struct called implBipartGraph and that is the size we need to implement the graph*/
 	bpGraph_t *pGraph = (bpGraph_t*) safeMalloc(sizeof(bpGraph_t));
+
+	/*The vertex numbers are scanned and are passed into this function as parameters,
+	 * these parameters are set to the vertex numbers of both partites of the graph*/
+
 	pGraph->vertNum1 = vertNumPart1;
 	pGraph->vertNum2 = vertNumPart2;
 
 	/* initialise arrays */
+
+	/*Here, we are setting aside two chunks of memory for two data structures*/
+
+	/*Every element in the char array is a pointer to a linked list, there are vertNumPart1 number of such chars
+	 * so, we need to set aside that much memory (vertNumPart1 * sizeof(linkedList_t*))*/
+
 	pGraph->vpVertsP1 = (linkedList_t**) safeMalloc(vertNumPart1 * sizeof(linkedList_t*));
+
+	/*Setting aside memory for an array of length equal to
+	 *number of chars required in the array in partite 1*/
 	pGraph->vVertExistP1 = (char *) safeMalloc(vertNumPart1 * sizeof(char));
+
 	/* initialise all elements to null for neighbours and true for existance */
 	for (i = 0; i < pGraph->vertNum1; ++i) {
 		pGraph->vpVertsP1[i] = createList();
 		pGraph->vVertExistP1[i] = 1;
 	}
 
+	/*Setting apart two chunks of memory for further use similar to above partite 1*/
 	pGraph->vpVertsP2 = (linkedList_t**) safeMalloc(vertNumPart2 * sizeof(linkedList_t*));
 	pGraph->vVertExistP2 = (char *) safeMalloc(vertNumPart2 * sizeof(char));
+
 	/* initialise all elements to null */
 	for (i = 0; i < pGraph->vertNum2; ++i) {
 		pGraph->vpVertsP2[i] = createList();
